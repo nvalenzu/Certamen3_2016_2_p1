@@ -16,6 +16,7 @@ public class Feed implements Parcelable {
     private String content;
     private String image;
     private boolean isFavorite;
+    private int id;
 
     public Feed() {
 
@@ -90,6 +91,10 @@ public class Feed implements Parcelable {
     public void setImage(String image) {
         this.image = image;
     }
+
+    public void setID(int id){ this.id = id; }
+
+    public int getID(){ return id; }
 
     @Override
     public int describeContents() {

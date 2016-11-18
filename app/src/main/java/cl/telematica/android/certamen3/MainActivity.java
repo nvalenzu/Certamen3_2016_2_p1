@@ -20,8 +20,6 @@ public class MainActivity extends BaseActivity {
     }
 
 
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -40,6 +38,10 @@ public class MainActivity extends BaseActivity {
             /**
              * You should manage the action to show the favorite items saved by the user
              */
+
+            setContentFrame(R.id.content_frame);
+            switchContent(ListFragment.newInstance(), null);
+
             return true;
         }
 
