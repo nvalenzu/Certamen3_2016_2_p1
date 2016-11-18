@@ -1,70 +1,26 @@
 package cl.telematica.android.certamen3;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
+import cl.telematica.android.certamen3.fragment.ListFragment;
 
-import java.util.ArrayList;
-import java.util.List;
-
-public class MainActivity extends AppCompatActivity {
-
-    private RecyclerView mRecyclerView;
-    private RecyclerView.LayoutManager mLayoutManager;
+public class MainActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        createMyRecyclerView();
-        MyAsyncTaskExecutor.getInstance().executeMyAsynctask(this, mRecyclerView);
+        setContentFrame(R.id.content_frame);
+        switchContent(ListFragment.newInstance(), null);
+
+        // MyAsyncTaskExecutor.getInstance().executeMyAsynctask(this, mRecyclerView);
     }
 
-    public void createMyRecyclerView() {
-        mRecyclerView = (RecyclerView) findViewById(R.id.recyclerView);
-        mRecyclerView.setHasFixedSize(true);
 
-        mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-    }
 
-    public List<Feed> getFeeds(String result) {
-        List<Feed> feeds = new ArrayList<>();
-        try {
-            JSONObject jsonObject = new JSONObject(result);
-            JSONObject responseData = jsonObject.getJSONObject("responseData");
-            JSONObject feedObj = responseData.getJSONObject("feed");
-
-            JSONArray entries = feedObj.getJSONArray("entries");
-            int size = entries.length();
-            for(int i = 0; i < size; i++){
-                JSONObject entryObj = entries.getJSONObject(i);
-                Feed feed = new Feed();
-
-                feed.setTitle(entryObj.optString("title"));
-                feed.setLink(entryObj.optString("link"));
-                feed.setAuthor(entryObj.optString("author"));
-                feed.setPublishedDate(entryObj.optString("publishedDate"));
-                feed.setContent(entryObj.optString("content"));
-                feed.setImage(entryObj.optString("image"));
-
-                feeds.add(feed);
-            }
-
-            return feeds;
-        } catch (JSONException e) {
-            e.printStackTrace();
-            return feeds;
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -89,5 +45,6 @@ public class MainActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
 
 }

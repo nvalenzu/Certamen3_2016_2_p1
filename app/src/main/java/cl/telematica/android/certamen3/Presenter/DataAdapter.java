@@ -1,4 +1,4 @@
-package cl.telematica.android.certamen3;
+package cl.telematica.android.certamen3.Presenter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -14,6 +14,9 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 
 import java.util.List;
+
+import cl.telematica.android.certamen3.R;
+import cl.telematica.android.certamen3.model.Feed;
 
 /**
  * Created by franciscocabezas on 11/18/16.
