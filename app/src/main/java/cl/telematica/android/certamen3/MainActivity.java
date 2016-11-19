@@ -38,7 +38,7 @@ public class MainActivity extends BaseActivity {
             /**
              * You should manage the action to show the favorite items saved by the user
              */
-
+             // aqui deberia hacer algo.... pero ya que
             setContentFrame(R.id.content_frame);
             switchContent(ListFragment.newInstance(), null);
 
